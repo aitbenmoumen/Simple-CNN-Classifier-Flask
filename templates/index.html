@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1. 0">
+    <title>🍎 Fruit Classifier - CNN Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍎 Fruit Classifier</h1>
+            <p>Upload an image of a fruit to classify it using our CNN model</p>
+        </header>
+
+        <div class="upload-section">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" name="file" accept="image/*" required>
+                    <label for="fileInput" class="file-label">
+                        <span id="fileName">Choose an image... </span>
+                        <span class="browse-btn">Browse</span>
+                    </label>
+                </div>
+                
+                <div id="imagePreview" class="image-preview hidden">
+                    <img id="preview" src="" alt="Preview">
+                </div>
+                
+                <button type="submit" id="predictBtn" class="predict-btn" disabled>
+                    🔍 Classify Fruit
+                </button>
+            </form>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Analyzing image...</p>
+        </div>
+
+        <div id="results" class="results hidden">
+            <h2>📊 Prediction Results</h2>
+            
+            <div class="main-result">
+                <div class="predicted-class">
+                    <span class="label">Predicted Fruit:</span>
+                    <span id="predictedClass" class="value"></span>
+                </div>
+                <div class="confidence">
+                    <span class="label">Confidence:</span>
+                    <span id="confidence" class="value"></span>
+                </div>
+            </div>
+
+            <div class="all-predictions">
+                <h3>All Predictions:</h3>
+                <div id="allPredictions"></div>
+            </div>
+
+            <button id="tryAgain" class="try-again-btn">
+                🔄 Try Another Image
+            </button>
+        </div>
+
+        <div id="error" class="error hidden">
+            <p id="errorMessage"></p>
+            <button id="dismissError" class="dismiss-btn">Dismiss</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
